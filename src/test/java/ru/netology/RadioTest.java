@@ -7,24 +7,26 @@ import static org.junit.jupiter.api.Assertions.*;
 class RadioTest {
     Radio radio = new Radio();
 
+    @ Test
+    void shouldSetNumberOfStation () {
+        Radio radio = new Radio(20);
+        assertEquals(20, radio.getMaxStation());
+    }
+
     @Test
-    void CurrentStationMoreDefaultMax() {
+    void currentStationMoreDefaultMax() {
         radio.setCurrentStation(11);
         assertEquals(0, radio.getCurrentStation());
     }
-    @ Test
-    void shouldSetNumberOfStation () {
-        radio.setMaxStation(20);
-        assertEquals(20, radio.getMaxStation());
-    }
+
     @Test
-    void CurrentStationMoreSetMax() {
-        radio.setMaxStation(20);
+    void currentStationMoreSetMax() {
+        Radio radio = new Radio(20);
         radio.setCurrentStation(21);
         assertEquals(0, radio.getCurrentStation());
     }
     @Test
-    void CurrentStationLessMin() {
+    void currentStationLessMin() {
         radio.setCurrentStation(-5);
         assertEquals(0, radio.getCurrentStation());
     }
@@ -35,12 +37,12 @@ class RadioTest {
     }
 
     @Test
-    void VolumeMoreMax() {
+    void volumeMoreMax() {
         radio.setVolume(110);
         assertEquals(0, radio.getVolume());
     }
     @Test
-    void VolumeLessMin() {
+    void volumeLessMin() {
         radio.setVolume(-5);
         assertEquals(0, radio.getVolume());
     }
@@ -58,7 +60,7 @@ class RadioTest {
     }
     @Test
     void shouldNotIncreaseSetStation() {
-        radio.setMaxStation(20);
+        Radio radio = new Radio(20);
         radio.setCurrentStation(20);
         radio.increaseStation();
         assertEquals(0, radio.getCurrentStation());
@@ -71,7 +73,7 @@ class RadioTest {
     }
     @Test
     void shouldIncreaseSetStation() {
-        radio.setMaxStation(20);
+        Radio radio = new Radio(20);
         radio.setCurrentStation(11);
         radio.increaseStation();
         assertEquals(12, radio.getCurrentStation());
@@ -85,7 +87,7 @@ class RadioTest {
     }
     @Test
     void shouldNotDecreaseSetStation() {
-        radio.setMaxStation(20);
+        Radio radio = new Radio(20);
         radio.setCurrentStation(0);
         radio.decreaseStation();
         assertEquals(20, radio.getCurrentStation());
